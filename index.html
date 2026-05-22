@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -12,18 +14,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet" />
 
     <script>
+
         tailwind.config = {
+
             theme: {
+
                 extend: {
+
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
                     },
 
                     colors: {
+
                         brand: {
                             50: '#fef2f2',
                             100: '#fee2e2',
@@ -47,6 +55,7 @@
                 }
             }
         }
+
     </script>
 
     <style>
@@ -70,6 +79,7 @@
         }
 
     </style>
+
 </head>
 
 <body class="bg-slate-50 text-slate-800 min-h-screen font-sans flex flex-col antialiased">
@@ -90,7 +100,7 @@
                 </h1>
 
                 <p class="text-red-100 text-xs sm:text-sm mt-1 max-w-3xl">
-                    Mathematical modeling of indigenous Malaysian cattle growth using the Gompertz Growth Function and biological derivatives.
+                    Mathematical modeling of indigenous Malaysian cattle growth using the Gompertz Growth Function and calculus derivatives.
                 </p>
 
             </div>
@@ -98,7 +108,7 @@
             <div class="bg-brand-850 p-3 rounded-lg border border-red-900/60 shrink-0">
 
                 <span class="text-xs text-red-200 block font-medium uppercase font-semibold">
-                    🇲🇾 Indigenous Breed Model
+                    🇲🇾 Indigenous Malaysian Breed
                 </span>
 
                 <span class="text-sm font-bold text-white block">
@@ -106,7 +116,9 @@
                 </span>
 
             </div>
+
         </div>
+
     </header>
 
     <!-- MAIN -->
@@ -129,42 +141,25 @@
                         <p>
                             This biological simulation models the growth kinetics of
                             <strong>Kedah-Kelantan (KK) cattle</strong>,
-                            an indigenous Malaysian Bos indicus breed widely reared throughout northern Peninsular Malaysia.
-                            KK cattle are highly adapted to tropical heat, resistant to local diseases,
-                            and capable of surviving on low-quality forage systems.
+                            one of Malaysia's most important indigenous beef cattle breeds.
+                            The breed is highly adapted to tropical climates,
+                            high humidity environments,
+                            and low-quality forage systems commonly found in Malaysia.
                         </p>
 
                         <p>
-                            Growth data and mature weight parameters were adapted from Malaysian cattle production studies
-                            conducted by Universiti Putra Malaysia (UPM), MARDI, and local beef industry references.
-                            Mature KK cattle generally reach approximately
-                            <strong>220–312 kg body weight</strong> depending on sex and management system.
+                            Growth parameters used in this model were adapted from Malaysian tropical cattle production studies,
+                            including research conducted by Universiti Putra Malaysia (UPM),
+                            MARDI,
+                            and local beef industry references.
                         </p>
 
                         <p>
-                            The function <strong>f(x)</strong> calculates the cumulative body weight of the cattle at age
+                            The function <strong>f(x)</strong> calculates cumulative cattle body weight at age
                             <strong>x</strong> (months),
                             while the derivative <strong>f'(x)</strong> calculates the instantaneous growth rate in kg/month.
-                            The derivative curve allows farmers to identify the biologically optimal fattening stage for beef production.
+                            The derivative curve helps identify the biologically optimal growth phase for efficient beef production.
                         </p>
-
-                    </div>
-
-                    <!-- PROFILE -->
-                    <div class="mt-5 bg-red-50 p-4 rounded-xl border border-red-100">
-
-                        <h3 class="text-xs font-bold text-red-800 uppercase tracking-wider mb-2">
-                            Breed Profile Summary
-                        </h3>
-
-                        <ul class="space-y-1.5 text-xs text-slate-700">
-                            <li>• <strong>Breed:</strong> Kedah-Kelantan (KK) Indigenous Cattle</li>
-                            <li>• <strong>Species:</strong> Bos indicus</li>
-                            <li>• <strong>Production Type:</strong> Tropical Beef Cattle</li>
-                            <li>• <strong>Main Regions:</strong> Kedah, Kelantan, Terengganu, Perlis</li>
-                            <li>• <strong>Mature Weight:</strong> 220–312 kg</li>
-                            <li>• <strong>Climate Adaptation:</strong> Excellent Tropical Heat Resistance</li>
-                        </ul>
 
                     </div>
 
@@ -182,7 +177,7 @@
                             </div>
 
                             <p class="text-[11px] text-slate-500 mt-2 text-center">
-                                Calculates total cattle body weight (kg) at age x.
+                                Calculates total cattle body weight in kilograms.
                             </p>
 
                         </div>
@@ -198,17 +193,18 @@
                             </div>
 
                             <p class="text-[11px] text-slate-500 mt-2 text-center">
-                                Calculates exact monthly growth rate (kg/month).
+                                Calculates instantaneous growth rate in kg/month.
                             </p>
 
                         </div>
+
                     </div>
 
                     <!-- PARAMETERS -->
                     <div class="mt-5 p-4 bg-blue-50 border border-blue-100 rounded-lg text-xs text-blue-950">
 
                         <strong class="text-blue-900 text-sm block mb-3">
-                            📊 Model Parameters
+                            📊 Gompertz Model Parameters
                         </strong>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -223,7 +219,7 @@
 
                             <div>• <strong>k:</strong> Genetic Growth Coefficient</div>
 
-                            <div>• <strong>η (eta):</strong> Feeding & Environmental Efficiency</div>
+                            <div>• <strong>η (eta):</strong> Feeding & Climate Efficiency</div>
 
                         </div>
 
@@ -247,6 +243,12 @@
 
                     </div>
 
+                    <p class="text-xs text-slate-500 mb-5 leading-relaxed">
+                        Adjust biological and environmental parameters to observe how nutrition,
+                        management quality,
+                        and genetic efficiency influence Kedah-Kelantan cattle growth performance.
+                    </p>
+
                     <div class="space-y-4">
 
                         <!-- A -->
@@ -265,7 +267,8 @@
 
                             </div>
 
-                            <input type="range" id="param-A"
+                            <input type="range"
+                                id="param-A"
                                 min="180"
                                 max="400"
                                 step="5"
@@ -290,7 +293,8 @@
 
                             </div>
 
-                            <input type="range" id="param-k"
+                            <input type="range"
+                                id="param-k"
                                 min="0.040"
                                 max="0.150"
                                 step="0.001"
@@ -338,6 +342,7 @@
                             </span>
 
                         </div>
+
                     </div>
 
                 </section>
@@ -359,14 +364,15 @@
                             </h2>
 
                             <p class="text-xs text-slate-500 mt-0.5">
-                                Solid red line = Weight f(x).
-                                Dashed blue line = Growth Rate f'(x).
+                                Solid red line represents Weight f(x).
+                                Dashed blue line represents Growth Rate f'(x).
                             </p>
 
                         </div>
+
                     </div>
 
-                    <!-- GRAPH -->
+                    <!-- CHART -->
                     <div class="relative w-full h-[430px]">
                         <canvas id="growthChart"></canvas>
                     </div>
@@ -403,6 +409,15 @@
                 <!-- ANALYSIS -->
                 <section class="bg-slate-900 text-white rounded-2xl shadow-md p-6 border-b-4 border-blue-500">
 
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+
+                        <h3 class="font-bold text-sm flex items-center gap-2 text-blue-300">
+                            🔬 Selected Age Evaluation Calculator
+                        </h3>
+
+                    </div>
+
+                    <!-- METRICS -->
                     <div class="grid grid-cols-3 gap-2 text-center mb-5">
 
                         <div class="bg-slate-800/60 p-2.5 rounded-xl">
@@ -459,28 +474,32 @@
                     <div class="bg-black/40 p-4 rounded-xl space-y-3 font-mono text-xs border border-slate-800">
 
                         <div>
+
                             <span class="text-blue-300 font-semibold">
-                                f(x):
+                                1. Body Weight Function f(x):
                             </span>
 
                             <div id="fx-text"
                                 class="py-1 text-emerald-300 overflow-x-auto whitespace-nowrap">
                             </div>
+
                         </div>
 
                         <div>
+
                             <span class="text-blue-300 font-semibold">
-                                f'(x):
+                                2. Growth Rate Derivative f'(x):
                             </span>
 
                             <div id="dfx-text"
                                 class="py-1 text-emerald-300 overflow-x-auto whitespace-nowrap">
                             </div>
+
                         </div>
 
                     </div>
 
-                    <!-- ADVICE -->
+                    <!-- BIOLOGICAL INTERPRETATION -->
                     <div class="mt-5 pt-4 border-t border-slate-800">
 
                         <h4 class="text-xs font-bold text-blue-300 mb-2 uppercase tracking-wider">
@@ -499,6 +518,136 @@
 
         </div>
 
+        <!-- MALAYSIAN CONTEXT -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mt-6">
+
+            <h2 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+                🇲🇾 Malaysian Beef Cattle Science & Farm Management Context
+            </h2>
+
+            <div class="space-y-4 text-xs sm:text-sm text-slate-600 leading-relaxed">
+
+                <p>
+                    Kedah-Kelantan (KK) cattle are among the most important indigenous beef breeds in Malaysia.
+                    Unlike imported European cattle breeds,
+                    KK cattle evolved under tropical Southeast Asian environments
+                    and therefore possess superior resistance to heat stress,
+                    internal parasites,
+                    and seasonal forage fluctuations.
+                </p>
+
+                <p>
+                    In Malaysian beef production systems,
+                    growth performance is heavily influenced by environmental temperature,
+                    forage quality,
+                    mineral supplementation,
+                    and feed energy density.
+                    The derivative curve f'(x) allows farmers and researchers
+                    to estimate the biological efficiency of tissue growth at each age stage.
+                </p>
+
+                <ul class="list-disc pl-5 space-y-2 text-xs">
+
+                    <li>
+                        <strong>Calf Development Phase (0–8 Months):</strong>
+                        Skeletal growth,
+                        rumen microbial colonization,
+                        and immune system maturation dominate.
+                        The derivative f'(x) remains relatively low but steadily increases.
+                    </li>
+
+                    <li>
+                        <strong>Juvenile Accelerated Growth Phase (9–18 Months):</strong>
+                        Muscle accretion becomes highly active.
+                        The derivative f'(x) rises aggressively toward the biological inflection point.
+                        Farmers often optimize concentrate supplementation during this phase
+                        to maximize lean tissue gain.
+                    </li>
+
+                    <li>
+                        <strong>Peak Biological Growth Efficiency:</strong>
+                        Near x* = 18 months,
+                        the derivative f'(x) reaches its maximum value.
+                        This stage represents the most efficient conversion of feed nutrients into body tissue growth.
+                    </li>
+
+                    <li>
+                        <strong>Finishing Phase (After 20 Months):</strong>
+                        Total body weight f(x) continues increasing,
+                        but the derivative f'(x) begins declining.
+                        More dietary energy is redirected toward fat deposition instead of rapid muscle growth.
+                    </li>
+
+                    <li>
+                        <strong>Market Optimization:</strong>
+                        Malaysian beef systems commonly target slaughter ages between
+                        24–30 months.
+                        Beyond this period,
+                        maintenance energy costs increase substantially while biological growth efficiency declines.
+                    </li>
+
+                </ul>
+
+                <div class="border-l-4 border-slate-200 pl-4 py-2 italic bg-slate-50 rounded-r-lg font-mono text-[11px] mt-4 text-slate-500">
+
+                    <strong>Scientific Note:</strong>
+                    The Gompertz derivative function f'(x)
+                    provides a mathematical approximation of biological tissue deposition efficiency.
+                    Livestock scientists use growth derivatives to estimate optimal feeding periods,
+                    slaughter timing,
+                    and feed conversion performance.
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- REFERENCES -->
+        <section class="mt-6">
+
+            <div class="bg-slate-900 text-slate-300 rounded-2xl border border-slate-800 p-6">
+
+                <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    📚 Scientific References
+                </h2>
+
+                <div class="space-y-3 text-xs leading-relaxed">
+
+                    <p>
+                        1. Department of Veterinary Services (DVS) Malaysia —
+                        Indigenous cattle breed development reports and Malaysian beef production statistics.
+                    </p>
+
+                    <p>
+                        2. MARDI (Malaysian Agricultural Research and Development Institute) —
+                        Tropical cattle growth performance and feed efficiency studies involving Kedah-Kelantan cattle.
+                    </p>
+
+                    <p>
+                        3. Universiti Putra Malaysia (UPM),
+                        Faculty of Agriculture —
+                        Research on growth performance and carcass characteristics of Kedah-Kelantan cattle under tropical management systems.
+                    </p>
+
+                    <p>
+                        4. Brown, J.E., Fitzhugh, H.A., & Cartwright, T.C. (1976).
+                        A comparison of nonlinear models for describing weight-age relationships in cattle.
+                        Journal of Animal Science.
+                    </p>
+
+                    <p>
+                        5. Gompertz, B. (1825).
+                        On the Nature of the Function Expressive of the Law of Human Mortality.
+                        Philosophical Transactions of the Royal Society.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
 
     <!-- FOOTER -->
@@ -511,7 +660,7 @@
             </p>
 
             <p class="text-slate-500 mt-1">
-                Indigenous Malaysian beef cattle growth modeling using calculus and biological derivatives.
+                Applying calculus concepts to tropical beef cattle growth and feed efficiency modeling.
             </p>
 
         </div>
@@ -523,6 +672,7 @@
         let A = 280;
         let k = 0.095;
         let eta = 0.82;
+
         let B = k * eta;
 
         const xStar = 18.0;
@@ -532,6 +682,7 @@
         let growthChartInstance = null;
 
         function calculateWeight(x, A, B, xStar) {
+
             return A * Math.exp(-Math.exp(-B * (x - xStar)));
         }
 
@@ -570,20 +721,73 @@
 
         function getAdvice(x, weight, rate) {
 
-            if (x <= 8) {
-                return `🐄 Calf stage: skeletal and digestive development dominate. Growth rate is increasing steadily at ${rate.toFixed(2)} kg/month.`;
+            if (x <= 6) {
+
+                return `
+🐄 Neonatal Calf Stage (0–6 Months):
+
+At this age,
+the calf prioritizes rumen development,
+immune adaptation,
+and skeletal formation rather than large-scale muscle deposition.
+
+The derivative f'(x) is currently ${rate.toFixed(2)} kg/month,
+indicating early-stage biological growth efficiency.
+High-quality milk replacers and calf starter concentrates are important during this phase.
+`;
             }
 
-            else if (x <= 16) {
-                return `🌱 Juvenile growth phase: muscle frame expansion becomes rapid. Weight gain derivative is climbing aggressively.`;
+            else if (x > 6 && x <= 12) {
+
+                return `
+🌱 Juvenile Development Phase (6–12 Months):
+
+Rapid frame expansion and connective tissue growth are occurring.
+The derivative f'(x) has increased to ${rate.toFixed(2)} kg/month,
+showing accelerated biological tissue deposition.
+
+Protein-energy supplementation during this phase strongly influences future mature body size.
+`;
             }
 
-            else if (x <= 22) {
-                return `⚡ Peak biological growth phase detected! The derivative f'(x) is near maximum efficiency. Nutritional management is critical during this stage.`;
+            else if (x > 12 && x <= 20) {
+
+                return `
+⚡ Peak Biological Growth Phase (12–20 Months):
+
+The cattle is approaching the Gompertz inflection point.
+The derivative f'(x) is near maximal biological efficiency at ${rate.toFixed(2)} kg/month.
+
+This represents the economically optimal stage for beef production,
+where feed conversion into lean muscle tissue is highly efficient.
+`;
+            }
+
+            else if (x > 20 && x <= 28) {
+
+                return `
+🥩 Transitional Finishing Phase (20–28 Months):
+
+Body weight continues increasing strongly at ${weight.toFixed(1)} kg,
+but the derivative f'(x) has begun slowing to ${rate.toFixed(2)} kg/month.
+
+Muscle accretion gradually slows while adipose tissue deposition increases.
+Feed efficiency begins declining progressively.
+`;
             }
 
             else {
-                return `🥩 Finishing stage: cumulative body mass remains increasing, but the derivative f'(x) begins tapering as maturity approaches.`;
+
+                return `
+🐂 Mature Growth Phase (>28 Months):
+
+The Gompertz curve f(x) is approaching its asymptotic mature body weight.
+Although total body mass still increases,
+the derivative f'(x) has declined substantially to ${rate.toFixed(2)} kg/month.
+
+Maintenance energy requirements become increasingly dominant,
+reducing economic feed conversion efficiency.
+`;
             }
         }
 
@@ -892,4 +1096,5 @@
     </script>
 
 </body>
+
 </html>
