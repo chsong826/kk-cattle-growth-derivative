@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <title>Kedah-Kelantan Cattle Growth Kinetics Lab</title>
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -25,24 +26,25 @@
                         sans: ['Inter', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
                     },
+
                     colors: {
                         brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            500: '#16a34a',
-                            600: '#15803d',
-                            700: '#166534',
-                            850: '#14532d',
-                            900: '#052e16',
+                            50:'#f0fdf4',
+                            100:'#dcfce7',
+                            500:'#16a34a',
+                            600:'#15803d',
+                            700:'#166534',
+                            850:'#14532d',
+                            900:'#052e16'
                         },
+
                         accent: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#2563eb',
-                            600: '#1d4ed8',
-                            700: '#1e40af',
-                            950: '#172554',
+                            50:'#eff6ff',
+                            100:'#dbeafe',
+                            500:'#2563eb',
+                            600:'#1d4ed8',
+                            700:'#1e40af',
+                            950:'#172554'
                         }
                     }
                 }
@@ -51,583 +53,590 @@
     </script>
 
     <style>
-        body {
-            background: #f8fafc;
+
+        body{
+            background:#f8fafc;
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
+        ::-webkit-scrollbar{
+            width:8px;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 9999px;
+        ::-webkit-scrollbar-thumb{
+            background:#cbd5e1;
+            border-radius:9999px;
         }
 
-        .chart-label {
-            position: absolute;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 4px 8px;
-            border-radius: 9999px;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .fx-label {
-            background: #dcfce7;
-            color: #166534;
-            border: 1px solid #86efac;
-        }
-
-        .dfx-label {
-            background: #dbeafe;
-            color: #1d4ed8;
-            border: 1px solid #93c5fd;
-        }
     </style>
 </head>
 
 <body class="font-sans text-slate-800 min-h-screen flex flex-col">
 
-    <!-- HEADER -->
-    <header class="bg-brand-900 text-white border-b-4 border-brand-500 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-5 flex flex-col lg:flex-row justify-between gap-4">
+<!-- HEADER -->
+<header class="bg-brand-900 text-white border-b-4 border-brand-500 shadow-md">
 
-            <div>
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-850 text-brand-100 mb-2">
-                    Program: SFH - Ruminant Production Technology (Malaysia)
-                </span>
+    <div class="max-w-7xl mx-auto px-4 py-5 flex flex-col lg:flex-row justify-between gap-4">
 
-                <h1 class="text-3xl font-extrabold tracking-tight flex items-center gap-2">
-                    🐄 Kedah-Kelantan Cattle Growth & Daily Gain Calculator
-                </h1>
+        <div>
 
-                <p class="text-brand-100 text-sm mt-2 max-w-3xl">
-                    Biological growth modeling and derivative analysis for Malaysian indigenous Kedah-Kelantan cattle using the Gompertz Growth Function.
-                </p>
-            </div>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-850 text-brand-100 mb-2">
+                Program: SFH - Ruminant Production Technology (Malaysia)
+            </span>
 
-            <div class="bg-brand-850 p-4 rounded-xl border border-brand-700/50">
-                <span class="text-xs text-brand-200 uppercase block font-semibold">
-                    🧬 Bio-Growth Model
-                </span>
+            <h1 class="text-3xl font-extrabold tracking-tight flex items-center gap-2">
+                🐄 Kedah-Kelantan Cattle Growth & Daily Gain Calculator
+            </h1>
 
-                <span class="font-bold text-white text-sm">
-                    Gompertz Growth Function
-                </span>
-            </div>
+            <p class="text-brand-100 text-sm mt-2 max-w-3xl">
+                Biological growth modeling and derivative analysis for Malaysian Kedah-Kelantan cattle using the Gompertz Growth Function.
+            </p>
+
         </div>
-    </header>
 
-    <!-- MAIN -->
-    <main class="max-w-7xl mx-auto w-full px-4 py-6 flex-grow">
+        <div class="bg-brand-850 p-4 rounded-xl border border-brand-700/50">
 
-        <!-- TOP GRID -->
-        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+            <span class="text-xs text-brand-200 uppercase block font-semibold">
+                🧬 Bio-Growth Model
+            </span>
 
-            <!-- LEFT -->
-            <div class="xl:col-span-5 space-y-6">
+            <span class="font-bold text-white text-sm">
+                Gompertz Growth Function
+            </span>
 
-                <!-- DATA ORIGIN -->
-                <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+        </div>
 
-                    <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                        🐂 Kedah-Kelantan Cattle Study & Data Origin
+    </div>
+
+</header>
+
+<!-- MAIN -->
+<main class="max-w-7xl mx-auto w-full px-4 py-6 flex-grow">
+
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+
+        <!-- LEFT -->
+        <div class="xl:col-span-5 space-y-6">
+
+            <!-- DATA -->
+            <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+
+                <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    🐂 Kedah-Kelantan Cattle Study & Data Origin
+                </h2>
+
+                <div class="space-y-4 text-sm text-slate-600 leading-relaxed">
+
+                    <p>
+                        This simulation is calibrated using growth performance data collected from indigenous
+                        <strong>Kedah-Kelantan cattle</strong> reared under tropical semi-intensive grazing systems
+                        in Kelantan and Kedah, Malaysia.
+                    </p>
+
+                    <p>
+                        The function <strong>f(x)</strong> calculates cumulative body weight at age x.
+                        The derivative <strong>f'(x)</strong> gives the exact instantaneous daily gain.
+                    </p>
+
+                </div>
+
+                <!-- PROFILE -->
+                <div class="mt-5 bg-brand-50 border border-brand-100 rounded-xl p-4">
+
+                    <h3 class="text-xs font-bold text-brand-800 uppercase tracking-wider mb-2">
+                        Cattle Profile Summary
+                    </h3>
+
+                    <ul class="space-y-1.5 text-xs text-slate-700">
+                        <li>• <strong>Breed:</strong> Kedah-Kelantan (KK) Cattle</li>
+                        <li>• <strong>Production Type:</strong> Tropical Beef Cattle</li>
+                        <li>• <strong>Housing:</strong> Semi-Intensive Grazing</li>
+                        <li>• <strong>Location:</strong> Kelantan & Kedah, Malaysia</li>
+                        <li>• <strong>Growth Cycle:</strong> 24 Months</li>
+                    </ul>
+
+                </div>
+
+                <!-- FORMULAS -->
+                <div class="grid grid-cols-1 gap-4 mt-5 pt-5 border-t border-slate-100">
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+
+                        <span class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block mb-2">
+                            Weight Function f(x)
+                        </span>
+
+                        <div class="bg-white rounded border border-slate-100 shadow-sm py-3 text-center font-mono font-bold">
+                            f(x) = A × e<sup>-e<sup>-B(x - x*)</sup></sup>
+                        </div>
+
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+
+                        <span class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block mb-2">
+                            Daily Gain Derivative f'(x)
+                        </span>
+
+                        <div class="bg-white rounded border border-slate-100 shadow-sm py-3 text-center font-mono font-bold">
+                            f'(x) = A × B × e<sup>-B(x - x*) - e<sup>-B(x - x*)</sup></sup>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="xl:col-span-7 space-y-6">
+
+            <!-- GRAPH -->
+            <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+
+                <div class="border-b border-slate-100 pb-4 mb-4">
+
+                    <h2 class="text-xl font-bold text-slate-900">
+                        📈 Interactive Growth Curves
                     </h2>
 
-                    <div class="space-y-4 text-sm text-slate-600 leading-relaxed">
+                    <p class="text-xs text-slate-500 mt-1">
+                        Green solid line = Weight Function f(x).
+                        Blue dashed line = Derivative Function f'(x).
+                    </p>
 
-                        <p>
-                            This simulation is calibrated using performance data from
-                            <strong>Kedah-Kelantan (KK) cattle</strong>,
-                            one of Malaysia’s indigenous beef cattle breeds.
-                            The cattle were reared under semi-intensive tropical grazing systems
-                            in <strong>Kelantan and Kedah, Malaysia</strong>.
-                        </p>
+                </div>
 
-                        <p>
-                            The function <strong>f(x)</strong> calculates cumulative body weight
-                            at age <strong>x</strong>.
-                            The derivative <strong>f'(x)</strong> represents the instantaneous
-                            daily weight gain of the cattle.
-                        </p>
+                <!-- LEGEND -->
+                <div class="flex gap-3 mb-4 flex-wrap">
+
+                    <div class="flex items-center gap-2 text-xs bg-green-50 border border-green-200 px-3 py-1 rounded-lg">
+                        <div class="w-6 h-1 bg-green-600 rounded"></div>
+                        <span class="font-semibold text-green-700">f(x)</span>
                     </div>
 
-                    <!-- PROFILE -->
-                    <div class="mt-5 bg-brand-50 border border-brand-100 rounded-xl p-4">
-
-                        <h3 class="text-xs font-bold text-brand-800 uppercase tracking-wider mb-2">
-                            Cattle Profile Summary
-                        </h3>
-
-                        <ul class="space-y-1.5 text-xs text-slate-700">
-                            <li>• <strong>Breed:</strong> Kedah-Kelantan (KK) Cattle</li>
-                            <li>• <strong>Production Type:</strong> Tropical Beef Cattle</li>
-                            <li>• <strong>Housing System:</strong> Semi-Intensive Grazing</li>
-                            <li>• <strong>Location:</strong> Kelantan & Kedah, Malaysia</li>
-                            <li>• <strong>Standard Growth Cycle:</strong> 24 Months</li>
-                        </ul>
+                    <div class="flex items-center gap-2 text-xs bg-blue-50 border border-blue-200 px-3 py-1 rounded-lg">
+                        <div class="w-6 border-t-2 border-dashed border-blue-600"></div>
+                        <span class="font-semibold text-blue-700">f'(x)</span>
                     </div>
 
-                    <!-- FUNCTIONS -->
-                    <div class="grid grid-cols-1 gap-4 mt-5 pt-5 border-t border-slate-100">
+                </div>
 
-                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <!-- CHART -->
+                <div class="relative w-full h-[500px]">
 
-                            <span class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block mb-2">
-                                Weight Function f(x)
-                            </span>
+                    <canvas id="growthChart"></canvas>
 
-                            <div class="bg-white rounded border border-slate-100 shadow-sm py-3 text-center font-mono font-bold text-base">
-                                f(x) = A × e<sup>-e<sup>-B(x - x*)</sup></sup>
-                            </div>
-                        </div>
+                </div>
 
-                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <!-- SLIDER -->
+                <div class="mt-5 bg-slate-50 border border-slate-200 rounded-xl p-4">
 
-                            <span class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block mb-2">
-                                Daily Gain Derivative f'(x)
-                            </span>
+                    <div class="flex justify-between items-center mb-2">
 
-                            <div class="bg-white rounded border border-slate-100 shadow-sm py-3 text-center font-mono font-bold text-base">
-                                f'(x) = A × B × e<sup>-B(x - x*) - e<sup>-B(x - x*)</sup></sup>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
+                        <label class="text-xs uppercase tracking-wider font-semibold text-slate-700">
+                            Select Cattle Age
+                        </label>
 
-            <!-- RIGHT -->
-            <div class="xl:col-span-7 space-y-6">
+                        <span id="slider-age-text"
+                              class="bg-accent-600 text-white text-xs font-bold px-2 py-1 rounded">
+                            12 Months
+                        </span>
 
-                <!-- GRAPH -->
-                <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
-
-                    <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-4">
-
-                        <div>
-                            <h2 class="text-xl font-bold text-slate-900">
-                                📈 Interactive Growth Curves
-                            </h2>
-
-                            <p class="text-xs text-slate-500 mt-1">
-                                Green line = f(x) cumulative body weight.
-                                Blue dashed line = f'(x) daily gain derivative.
-                            </p>
-                        </div>
                     </div>
 
-                    <!-- GRAPH -->
-                    <div class="relative w-full h-[450px]">
+                    <input type="range"
+                           id="age-slider"
+                           min="1"
+                           max="24"
+                           step="1"
+                           value="12"
+                           class="w-full accent-brand-600">
 
-                        <!-- LABELS INSIDE GRAPH -->
-                        <div class="chart-label fx-label top-8 left-20">
-                            f(x)
-                        </div>
+                </div>
 
-                        <div class="chart-label dfx-label top-24 right-16">
-                            f'(x)
-                        </div>
+            </section>
 
-                        <canvas id="growthChart"></canvas>
+            <!-- EVALUATION -->
+            <section class="bg-slate-900 text-white rounded-2xl shadow-md border-b-4 border-accent-500 p-6">
+
+                <div class="border-b border-slate-800 pb-3 mb-4">
+
+                    <h3 class="font-bold text-indigo-300 flex items-center gap-2">
+                        🔬 Selected Month Evaluation
+                    </h3>
+
+                </div>
+
+                <div class="grid grid-cols-3 gap-3 text-center mb-5">
+
+                    <div class="bg-slate-800 rounded-xl p-3 border border-slate-700">
+
+                        <span class="text-[10px] uppercase text-slate-400 font-semibold block">
+                            Age
+                        </span>
+
+                        <span id="eval-age" class="text-xl font-extrabold">
+                            12
+                        </span>
+
+                        <span class="text-[10px] text-slate-400 block">
+                            months
+                        </span>
+
                     </div>
 
-                    <!-- SLIDER -->
-                    <div class="mt-5 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                    <div class="bg-slate-800 rounded-xl p-3 border border-slate-700">
 
-                        <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] uppercase text-slate-400 font-semibold block">
+                            Weight f(x)
+                        </span>
 
-                            <label class="text-xs uppercase tracking-wider font-semibold text-slate-700">
-                                Select Cattle Age
-                            </label>
+                        <span id="eval-weight" class="text-xl font-extrabold">
+                            175.0
+                        </span>
 
-                            <span id="slider-age-text"
-                                class="bg-accent-600 text-white text-xs font-bold px-2 py-1 rounded">
-                                12 Months
-                            </span>
-                        </div>
+                        <span class="text-[10px] text-slate-400 block">
+                            kg
+                        </span>
 
-                        <input type="range"
-                            id="age-slider"
-                            min="1"
-                            max="24"
-                            step="1"
-                            value="12"
-                            class="w-full accent-brand-600">
-                    </div>
-                </section>
-
-                <!-- CALCULATOR -->
-                <section class="bg-slate-900 text-white rounded-2xl shadow-md border-b-4 border-accent-500 p-6">
-
-                    <div class="flex justify-between items-center border-b border-slate-800 pb-3 mb-4">
-
-                        <h3 class="font-bold text-indigo-300 flex items-center gap-2">
-                            🔬 Selected Month Evaluation
-                        </h3>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-2 text-center mb-5">
+                    <div class="bg-accent-600/30 rounded-xl p-3 border border-accent-500/30">
 
-                        <div class="bg-slate-800 rounded-xl p-3 border border-slate-700">
+                        <span class="text-[10px] uppercase text-accent-300 font-bold block">
+                            Daily Gain f'(x)
+                        </span>
 
-                            <span class="text-[10px] uppercase text-slate-400 font-semibold block">
-                                Age
-                            </span>
+                        <span id="eval-rate"
+                              class="text-xl font-extrabold text-brand-500">
+                            12.6
+                        </span>
 
-                            <span id="eval-age"
-                                class="text-xl font-extrabold">
-                                12
-                            </span>
+                        <span class="text-[10px] text-accent-300 block">
+                            kg/month
+                        </span>
 
-                            <span class="text-[10px] text-slate-400 block">
-                                months
-                            </span>
-                        </div>
-
-                        <div class="bg-slate-800 rounded-xl p-3 border border-slate-700">
-
-                            <span class="text-[10px] uppercase text-slate-400 font-semibold block">
-                                Weight f(x)
-                            </span>
-
-                            <span id="eval-weight"
-                                class="text-xl font-extrabold">
-                                145.0
-                            </span>
-
-                            <span class="text-[10px] text-slate-400 block">
-                                kg
-                            </span>
-                        </div>
-
-                        <div class="bg-accent-600/30 rounded-xl p-3 border border-accent-500/30">
-
-                            <span class="text-[10px] uppercase text-accent-300 font-bold block">
-                                Daily Gain f'(x)
-                            </span>
-
-                            <span id="eval-rate"
-                                class="text-xl font-extrabold text-brand-500">
-                                0.52
-                            </span>
-
-                            <span class="text-[10px] text-accent-300 block">
-                                kg/day
-                            </span>
-                        </div>
                     </div>
 
-                    <!-- FORMULA -->
-                    <div class="bg-black/40 rounded-xl border border-slate-800 p-4 space-y-3 font-mono text-xs">
+                </div>
 
-                        <div class="uppercase tracking-wider text-slate-400 font-bold border-b border-slate-800 pb-1 text-[10px]">
-                            Mathematical Calculation Steps
-                        </div>
+            </section>
 
-                        <div>
-                            <span class="text-indigo-300 font-semibold">
-                                1. Cumulative Weight Function:
-                            </span>
-
-                            <div id="fx-text"
-                                class="text-emerald-300 py-1 overflow-x-auto whitespace-nowrap">
-                            </div>
-                        </div>
-
-                        <div>
-                            <span class="text-indigo-300 font-semibold">
-                                2. Daily Gain Derivative:
-                            </span>
-
-                            <div id="dfx-text"
-                                class="text-emerald-300 py-1 overflow-x-auto whitespace-nowrap font-bold">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ADVICE -->
-                    <div class="mt-5 pt-4 border-t border-slate-800">
-
-                        <h4 class="text-xs uppercase tracking-wider font-bold text-indigo-300 mb-2">
-                            🌾 Livestock Technical Advice
-                        </h4>
-
-                        <p id="eval-advice"
-                            class="bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs italic text-slate-200 leading-relaxed">
-                            Analyzing livestock growth...
-                        </p>
-                    </div>
-                </section>
-            </div>
         </div>
-    </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 text-center text-xs py-6 mt-10">
+    </div>
 
-        <div class="max-w-7xl mx-auto px-4">
-            <p>
-                © 2026 Kedah-Kelantan Cattle Growth Kinetics Lab
-            </p>
+</main>
 
-            <p class="mt-1 text-slate-500">
-                Applying calculus and biological growth modeling to Malaysian cattle production.
-            </p>
-        </div>
-    </footer>
+<!-- FOOTER -->
+<footer class="bg-slate-900 text-slate-400 border-t border-slate-800 text-center text-xs py-6 mt-10">
 
-    <!-- SCRIPT -->
-    <script>
+    <div class="max-w-7xl mx-auto px-4">
 
-        let A = 350;
-        let k = 0.090;
-        let eta = 0.82;
+        <p>
+            © 2026 Kedah-Kelantan Cattle Growth Kinetics Lab
+        </p>
 
-        let B = k * eta;
+        <p class="mt-1 text-slate-500">
+            Applying calculus and biological growth modeling to Malaysian cattle production systems.
+        </p>
 
-        const xStar = 12;
+    </div>
 
-        let currentX = 12;
+</footer>
 
-        let growthChart = null;
+<!-- SCRIPT -->
+<script>
 
-        function calculateWeight(x, A, B, xStar) {
+    let A = 350;
+    let B = 0.18;
+    const xStar = 12;
 
-            return A * Math.exp(
-                -Math.exp(
-                    -B * (x - xStar)
-                )
+    let currentX = 12;
+
+    let growthChart;
+
+    function calculateWeight(x){
+
+        return A * Math.exp(
+            -Math.exp(
+                -B * (x - xStar)
+            )
+        );
+    }
+
+    function calculateRate(x){
+
+        const expTerm = -B * (x - xStar);
+
+        return A * B * Math.exp(
+            expTerm - Math.exp(expTerm)
+        );
+    }
+
+    function generateData(){
+
+        const labels = [];
+        const weightData = [];
+        const rateData = [];
+
+        for(let x = 0; x <= 24; x++){
+
+            labels.push(x);
+
+            weightData.push(
+                calculateWeight(x)
+            );
+
+            /* IMPORTANT FIX:
+               MULTIPLY RATE × 5
+               so the blue dashed line becomes visible
+               and parallel inside the graph
+            */
+
+            rateData.push(
+                calculateRate(x) * 5
             );
         }
 
-        function calculateRate(x, A, B, xStar) {
+        return {
+            labels,
+            weightData,
+            rateData
+        };
+    }
 
-            const expTerm = -B * (x - xStar);
+    function updateEvaluation(x){
 
-            return A * B * Math.exp(
-                expTerm - Math.exp(expTerm)
-            );
-        }
+        currentX = x;
 
-        function generateData() {
+        const weight =
+            calculateWeight(x);
 
-            const labels = [];
-            const weights = [];
-            const rates = [];
+        const rate =
+            calculateRate(x);
 
-            for (let x = 0; x <= 24; x++) {
+        document.getElementById("eval-age").innerText = x;
 
-                labels.push(x);
+        document.getElementById("eval-weight").innerText =
+            weight.toFixed(1);
 
-                weights.push(
-                    calculateWeight(x, A, B, xStar)
-                );
+        document.getElementById("eval-rate").innerText =
+            rate.toFixed(1);
 
-                rates.push(
-                    calculateRate(x, A, B, xStar)
-                );
+        document.getElementById("slider-age-text").innerText =
+            `${x} Months`;
+
+        growthChart.update();
+    }
+
+    function initChart(){
+
+        const ctx =
+            document.getElementById('growthChart');
+
+        const data =
+            generateData();
+
+        /* VERTICAL LINE + POINTS */
+        const verticalLinePlugin = {
+
+            id: 'verticalLine',
+
+            afterDraw(chart){
+
+                const ctx = chart.ctx;
+
+                const xAxis = chart.scales.x;
+                const yAxis = chart.scales.y;
+
+                const x =
+                    xAxis.getPixelForValue(currentX);
+
+                /* VERTICAL LINE */
+
+                ctx.save();
+
+                ctx.beginPath();
+
+                ctx.setLineDash([6,6]);
+
+                ctx.moveTo(x, yAxis.top);
+
+                ctx.lineTo(x, yAxis.bottom);
+
+                ctx.strokeStyle = '#2563eb';
+
+                ctx.lineWidth = 2;
+
+                ctx.stroke();
+
+                ctx.restore();
+
+                /* GREEN POINT */
+
+                const weightY =
+                    yAxis.getPixelForValue(
+                        calculateWeight(currentX)
+                    );
+
+                ctx.beginPath();
+
+                ctx.arc(x, weightY, 6, 0, 2 * Math.PI);
+
+                ctx.fillStyle = '#16a34a';
+
+                ctx.fill();
+
+                /* BLUE POINT */
+
+                const rateY =
+                    yAxis.getPixelForValue(
+                        calculateRate(currentX) * 5
+                    );
+
+                ctx.beginPath();
+
+                ctx.arc(x, rateY, 6, 0, 2 * Math.PI);
+
+                ctx.fillStyle = '#2563eb';
+
+                ctx.fill();
             }
+        };
 
-            return {
-                labels,
-                weights,
-                rates
-            };
-        }
+        growthChart = new Chart(ctx, {
 
-        function updateEvaluation(x) {
+            type: 'line',
 
-            currentX = x;
+            data: {
 
-            const weight =
-                calculateWeight(x, A, B, xStar);
+                labels: data.labels,
 
-            const rate =
-                calculateRate(x, A, B, xStar);
+                datasets: [
 
-            document.getElementById("eval-age").innerText = x;
+                    {
+                        label: 'f(x)',
 
-            document.getElementById("eval-weight").innerText =
-                weight.toFixed(1);
+                        data: data.weightData,
 
-            document.getElementById("eval-rate").innerText =
-                rate.toFixed(2);
+                        borderColor: '#16a34a',
 
-            document.getElementById("slider-age-text").innerText =
-                `${x} Months`;
+                        backgroundColor: '#16a34a',
 
-            document.getElementById("fx-text").innerHTML =
-                `f(${x}) = ${weight.toFixed(1)} kg`;
+                        borderWidth: 4,
 
-            document.getElementById("dfx-text").innerHTML =
-                `f'(${x}) = ${rate.toFixed(2)} kg/day`;
+                        tension: 0.35,
 
-            let advice = "";
-
-            if (x <= 6) {
-
-                advice =
-                    `🐄 Calf development stage. Daily gain is ${rate.toFixed(2)} kg/day. Milk supplementation and pasture adaptation are important.`;
-            }
-
-            else if (x <= 15) {
-
-                advice =
-                    `🌱 Rapid muscle growth stage. Daily gain has increased to ${rate.toFixed(2)} kg/day. High-quality pasture and protein supplementation improve performance.`;
-            }
-
-            else {
-
-                advice =
-                    `🥩 Finishing stage. Growth rate slows to ${rate.toFixed(2)} kg/day while body weight continues increasing. Strategic concentrate feeding improves carcass quality.`;
-            }
-
-            document.getElementById("eval-advice").innerText = advice;
-        }
-
-        function initChart() {
-
-            const ctx =
-                document.getElementById("growthChart").getContext("2d");
-
-            const data = generateData();
-
-            growthChart = new Chart(ctx, {
-
-                type: "line",
-
-                data: {
-
-                    labels: data.labels,
-
-                    datasets: [
-
-                        {
-                            label: "f(x)",
-                            data: data.weights,
-                            borderColor: "#16a34a",
-                            borderWidth: 4,
-                            tension: 0.3,
-                            pointRadius: 0,
-                            yAxisID: 'y'
-                        },
-
-                        {
-                            label: "f'(x)",
-                            data: data.rates,
-                            borderColor: "#2563eb",
-                            borderWidth: 3,
-                            borderDash: [8, 6],
-                            tension: 0.3,
-                            pointRadius: 0,
-                            yAxisID: 'y1'
-                        }
-                    ]
-                },
-
-                options: {
-
-                    responsive: true,
-                    maintainAspectRatio: false,
-
-                    plugins: {
-
-                        legend: {
-                            display: false
-                        }
+                        pointRadius: 0
                     },
 
-                    scales: {
+                    {
+                        label: "f'(x)",
 
-                        x: {
+                        data: data.rateData,
 
-                            title: {
-                                display: true,
-                                text: 'Cattle Age (Months)',
-                                font: {
-                                    weight: 'bold'
-                                }
-                            },
+                        borderColor: '#2563eb',
 
-                            min: 0,
-                            max: 24
-                        },
+                        backgroundColor: '#2563eb',
 
-                        y: {
+                        borderWidth: 4,
 
-                            type: 'linear',
-                            position: 'left',
+                        borderDash: [10,8],
 
-                            title: {
-                                display: true,
-                                text: 'Body Weight f(x) (kg)',
-                                font: {
-                                    weight: 'bold'
-                                }
-                            },
+                        tension: 0.35,
 
-                            min: 0,
-                            max: 450
-                        },
+                        pointRadius: 0
+                    }
+                ]
+            },
 
-                        y1: {
+            options: {
 
-                            type: 'linear',
-                            position: 'right',
+                responsive: true,
 
-                            title: {
-                                display: true,
-                                text: "Daily Gain f'(x) (kg/day)",
-                                font: {
-                                    weight: 'bold'
-                                }
-                            },
+                maintainAspectRatio: false,
 
-                            min: 0,
-                            max: 1.2,
+                interaction: {
+                    mode: 'nearest',
+                    intersect: false
+                },
 
-                            grid: {
-                                drawOnChartArea: false
+                plugins: {
+
+                    legend: {
+                        display: false
+                    }
+                },
+
+                scales: {
+
+                    x: {
+
+                        title: {
+                            display: true,
+                            text: 'Age (Months)',
+                            font: {
+                                weight: 'bold'
                             }
                         }
                     },
 
-                    onClick: (event) => {
+                    y: {
 
-                        const chart = growthChart;
+                        title: {
+                            display: true,
+                            text: 'Growth Curve',
+                            font: {
+                                weight: 'bold'
+                            }
+                        },
 
-                        const position =
-                            Chart.helpers.getRelativePosition(event, chart);
+                        min: 0,
 
-                        const value =
-                            chart.scales.x.getValueForPixel(position.x);
-
-                        updateEvaluation(
-                            Math.round(value)
-                        );
+                        max: 420
                     }
+                },
+
+                onClick(event){
+
+                    const chart = growthChart;
+
+                    const position =
+                        Chart.helpers.getRelativePosition(event, chart);
+
+                    const xValue =
+                        chart.scales.x.getValueForPixel(position.x);
+
+                    const selected =
+                        Math.round(xValue);
+
+                    updateEvaluation(selected);
                 }
+            },
+
+            plugins: [verticalLinePlugin]
+        });
+    }
+
+    window.onload = function(){
+
+        document.getElementById("age-slider")
+            .addEventListener("input", (e)=>{
+
+                updateEvaluation(
+                    parseInt(e.target.value)
+                );
             });
-        }
 
-        window.onload = function () {
+        initChart();
 
-            document.getElementById("age-slider")
-                .addEventListener("input", (e) => {
+        updateEvaluation(12);
+    }
 
-                    updateEvaluation(
-                        parseInt(e.target.value)
-                    );
-                });
-
-            initChart();
-
-            updateEvaluation(12);
-        };
-
-    </script>
+</script>
 
 </body>
 </html>
